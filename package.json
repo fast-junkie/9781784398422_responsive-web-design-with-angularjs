@@ -4,16 +4,28 @@
   "private": true,
   "main": "server.js",
   "scripts": {
-    "scss": "sass ",
+    "empty": "run-script-os",
+    "empty:nix": "cat /dev/null > public/assets/sass/tmp.desktop.scss && cat /dev/null > public/assets/sass/tmp.mobile.scss && cat /dev/null > public/assets/sass/tmp.tablet.scss",
+    "copy:vendor": "cpx \"node_modules/{angular,angular-*,jquery/dist}/**/*\" public/assets/vendor -C",
+    "concat:desktop": "concat -o public/assets/sass/tmp.desktop.scss public/assets/sass/font.scss public/assets/sass/app.scss public/assets/sass/desktop.scss",
+    "concat:mobile": "concat -o public/assets/sass/tmp.mobile.scss public/assets/sass/font.scss public/assets/sass/app.scss public/assets/sass/mobile.scss",
+    "concat:tablet": "concat -o public/assets/sass/tmp.tablet.scss public/assets/sass/font.scss public/assets/sass/app.scss public/assets/sass/tablet.scss",
+    "scss:desktop": "sass public/assets/sass/tmp.desktop.scss public/assets/css/desktop.css",
+    "scss:mobile": "sass public/assets/sass/tmp.mobile.scss public/assets/css/mobile.css",
+    "scss:tablet": "sass public/assets/sass/tmp.tablet.scss public/assets/css/tablet.css",
     "start": "DEBUG=angularjs,angularjs:* nodemon server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "build:desktop": "npm run concat:desktop && npm run scss:desktop",
+    "build:mobile": "npm run concat:mobile && npm run scss:mobile",
+    "build:tablet": "npm run concat:tablet && npm run scss:tablet",
+    "build": "npm run build:desktop && npm run build:mobile && npm run build:tablet && npm run empty"
   },
   "author": "Fast Junkie",
   "license": "copyleft-next-0.3.1",
   "dependencies": {
     "angular": "1.8.2",
-    "angular-route": "1.8.2",
     "angular-resource": "1.8.2",
+    "angular-route": "1.8.2",
     "debug": "4.3.3",
     "express": "4.17.2",
     "jquery": "3.6.0",
@@ -21,13 +33,14 @@
   },
   "devDependencies": {
     "clean-css-cli": "5.5.2",
-    "concat": "1.0.3",
+    "concat": "^1.0.3",
     "cpx": "1.5.0",
     "eslint": "8.8.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.25.4",
     "jest": "27.5.0",
     "nodemon": "2.0.15",
+    "run-script-os": "^1.1.6",
     "sass": "1.49.7"
   }
 }

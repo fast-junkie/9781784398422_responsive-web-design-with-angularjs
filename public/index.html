@@ -4,21 +4,20 @@
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=yes">
+    <link rel="stylesheet" ng-if="styleType.length > 0" ng-href="./assets/css/{{styleType}}.css">
     <title></title>
   </head>
-  <body ng-controller="mainController">
+  <body>
+    <div ng-view></div>
 
-    <div class="loader" ng-if="!loaded">
-      <img src="/assets/img/loading.svg" alt="loading...">
-    </div>
-    <div class="container" ng-if="loaded">
-      <h1 ng-bind="bookTitle"></h1>
-    </div>
-
-    <script src="/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="/assets/vendor/angular/angular.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="./assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="./assets/vendor/angular/angular.min.js"></script>
+    <script src="./assets/vendor/angular-route/angular-route.min.js"></script>
+    <script src="./assets/vendor/angular-resource/angular-resource.min.js"></script>
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/providers/deviceTypeProvider.js"></script>
+    <script src="./assets/js/services/profileService.js"></script>
+    <script src="./assets/js/controllers/profileController.js"></script>
   </body>
 </html>
