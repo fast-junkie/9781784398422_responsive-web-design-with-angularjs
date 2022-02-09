@@ -1,6 +1,6 @@
 # 9781784398422_responsive-web-design-with-angularjs
 
-[Responsive Web Design With AngularJS](https://amzn.to/3spMHwc) :arrow_left: [AD]
+[Responsive Web Design With AngularJS](https://amzn.to/3spMHwc) :arrow_left: [AD]  
 by Sandeep Kumar Patel
 
 ___
