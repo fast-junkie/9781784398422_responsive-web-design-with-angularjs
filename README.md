@@ -1,7 +1,7 @@
 # 9781784398422_responsive-web-design-with-angularjs
 
-[AngularJS Directives](https://amzn.to/3AFf6li) :arrow_left: [AD]
-by Alex Vanston
+[Responsive Web Design With AngularJS](https://amzn.to/3spMHwc) :arrow_left: [AD]
+by Sandeep Kumar Patel
 
 ___
 
