@@ -6,7 +6,7 @@
   },
   "globals": {
     "angular": true,
-    "jquery": true,
+    "jQuery": true,
     "$": true
   },
   "extends": ["airbnb-base"],

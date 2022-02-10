@@ -1,0 +1,75 @@
+/* Responsive header... */
+p.header {
+  background: #eee;
+  color:green;
+  &.small-screen{
+    font-size: 0.8rem;
+  }
+  &.medium-screen{
+    font-size: 1.2rem;
+  }
+  &.large-screen{
+    font-size: 2rem;
+  }
+}
+
+/* Responsive list... */
+.item-list-container {
+  ol {
+    margin-bottom: 2px;
+    &.small-screen{
+      font-size: 0.6rem;
+    }
+    &.medium-screen{
+      font-size: 1rem;
+    }
+    &.large-screen{
+      font-size: 1.5rem;
+    }
+  }
+  .show-more {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:blue;
+    margin-left:10px;
+  }
+}
+
+/* Responsive paragraph... */
+p.paragraph {
+  &:first-letter {
+    color:green;
+  }
+  &.small-screen {
+    font-size: 0.8rem;
+    &:first-letter {
+      font-size: 1.6rem;
+    }
+  }
+  &.medium-screen {
+    font-size: 1.2rem;
+    &:first-letter {
+      font-size: 3rem;
+    }
+  }
+  &.large-screen {
+    font-size: 2rem;
+    &:first-letter {
+      font-size: 4rem;
+    }
+  }
+}
+
+/* Responsive text... */
+p.text {
+  &.small-screen {
+    font-size: 0.8rem;
+  }
+  &.medium-screen {
+    font-size: 1.2rem;
+  }
+  &.large-screen {
+    font-size: 2rem;
+  }
+}

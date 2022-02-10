@@ -1,20 +1,20 @@
 {
-  "aboutme": "I, Sandeep Kumar Patel, am a web developer and blogger living in Bangalore India.I have many years of experience in creating web applications both using custom and popular JavaScript libraries and frameworks such as AngularJS and YUI.",
-  "years": 4,
-  "roles": ["Web Developer", "JavaScript Developer", "Front End Lead"],
-  "languages": ["JavaScript", "Java"],
-  "webdevelopment": ["HTML5", "CSS3", "AngularJS", "Jquery", "BootStrap","YUI"],
-  "tools": ["SASS", "COMPASS", "GRUNT", "GIT"],
-  "ides": ["WebStorm", "Intelij Idea", "Eclipse"],
+  "aboutme": "Fugiat ullam debitis vitae magnam. Exercitationem ipsam et in. Deserunt unde facilis necessitatibus quo voluptas possimus doloribus. Quidem voluptates deleniti dolores omnis ab repudiandae. Quae cupiditate et qui maxime itaque. Hic consequatur natus minima repellendus.",
+  "years": 24,
+  "roles": ["Web Citizen", "JavaScript Junkie", "Front End Finagler"],
+  "languages": ["JavaScript", "PHP", "Java"],
+  "webdevelopment": ["HTML5", "CSS3", "AngularJS", "jQuery", "D3.js", "Node.js"],
+  "tools": ["SASS", "NPM", "ROMAN", "GIT"],
+  "ides": ["Visual Studio Code", "IntelliJ Idea", "PHPStorm"],
   "social":{
-      "linkedin": "http://www.linkedin.com/in/techblogger",
-      "facebook": "http://www.facebook.com/SandeepTechTutorials",
-      "twitter": "http://twitter.com/MySmallTutorial",
-      "googleplus": "https://plus.google.com/u/0/+SandeepKumarPatel/"
+      "linkedin": "https://duckduckgo.com/?q=site%3Alinkedin.com+%22bob+smith%22",
+      "facebook": "https://duckduckgo.com/?q=site%3Afacebook.com+%22bob+smith%22",
+      "twitter": "https://duckduckgo.com/?q=site%3Atwitter.com+%22bob+smith%22",
+      "googleplus": "https://duckduckgo.com/?q=site%3Aplus.google.com+%22bob+smith%22"
   },
   "contact":{
-      "email": "sandeeppateltech@gmail.com",
-      "mobile": "+91-8105469950",
-      "address": "Whitefield Bangalore 560087"
+      "email": "bob.smith@use.startmail.com",
+      "mobile": "+1-9990010002",
+      "address": "State, North America 00000"
   }
 }

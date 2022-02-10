@@ -14,3 +14,5 @@ This was done as part of a self imposed read and code along... of _&quot;OLD&quo
 ### Summary
 ---
 I found using `$window.innerHeight` and `$window.innerWidth` better when toggling device type in dev tools, as opposed to resizing the whole browser.
+
+A really fast read... most of the learning for me was in playing with the code. Breaking it and then figuring out how to fix it...

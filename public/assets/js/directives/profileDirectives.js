@@ -2,8 +2,8 @@
   angular
     .module('fj.app.directives')
     .directive('responsiveImage', _responsiveImage);
-  _responsiveImage.$inject = ['$window'];
-  function _responsiveImage($window) {
+  _responsiveImage.$inject = [];
+  function _responsiveImage() {
     return {
       restrict: 'E',
       replace: true,
@@ -13,19 +13,15 @@
       },
       template: '<img class="profile-image" ng-src="{{modifiedsrc}}" alt="{{respalt}}"/>',
       link(scope) {
-        scope.width = $window.innerWidth;
-        scope.$watch('width', (newWidth) => {
-          if (newWidth <= 400) {
-            scope.modifiedsrc = `${scope.respsrc}?s=80`;
-          } else if (newWidth > 400 && newWidth <= 767) {
-            scope.modifiedsrc = `${scope.respsrc}?s=150`;
-          } else {
-            scope.modifiedsrc = `${scope.respsrc}?s=250`;
-          }
-        });
-        angular.element($window).on('resize', () => {
+        scope.$on('breakpointClassChange', (event, argument) => {
           scope.$apply(() => {
-            scope.width = $window.innerWidth;
+            if (angular.equals(argument.styleClass, 'large-screen')) {
+              scope.modifiedsrc = `${scope.respsrc}?s=250&d=monsterid`;
+            } else if (angular.equals(argument.styleClass, 'medium-screen')) {
+              scope.modifiedsrc = `${scope.respsrc}?s=150&d=monsterid`;
+            } else if (angular.equals(argument.styleClass, 'small-screen')) {
+              scope.modifiedsrc = `${scope.respsrc}?s=80&d=monsterid`;
+            }
           });
         });
       },
@@ -35,30 +31,19 @@
   angular
     .module('fj.app.directives')
     .directive('responsiveHeader', _responsiveHeader);
-  _responsiveHeader.$inject = ['$window'];
-  function _responsiveHeader($window) {
+  _responsiveHeader.$inject = [];
+  function _responsiveHeader() {
     return {
       restrict: 'E',
       replace: true,
       scope: {
         respText: '@targettext',
       },
-      template: '<p class="{{deviceSize}}" ng-bind="respText"></p>',
+      template: '<p class="header {{deviceSize}}" ng-bind="respText"></p>',
       link(scope) {
-        scope.deviceSize = 'largeDevice';
-        scope.width = $window.innerWidth;
-        scope.$watch('width', (newWidth) => {
-          if (newWidth <= 400) {
-            scope.deviceSize = 'smallDevice';
-          } else if (newWidth > 400 && newWidth <= 767) {
-            scope.deviceSize = 'mediumDevice';
-          } else {
-            scope.deviceSize = 'largeDevice';
-          }
-        });
-        angular.element($window).on('resize', () => {
+        scope.$on('breakpointClassChange', (event, argument) => {
           scope.$apply(() => {
-            scope.width = $window.innerWidth;
+            scope.deviceSize = argument.styleClass;
           });
         });
       },
@@ -68,30 +53,86 @@
   angular
     .module('fj.app.directives')
     .directive('responsiveParagraph', _responsiveParagraph);
-  _responsiveParagraph.$inject = ['$window'];
-  function _responsiveParagraph($window) {
+  _responsiveParagraph.$inject = [];
+  function _responsiveParagraph() {
     return {
       restrict: 'E',
       replace: true,
       scope: {
         respPara: '@targetpara',
       },
-      template: '<p class="aboutme {{paragraphSize}}" ng-bind="respPara"></p>',
+      template: '<p class="paragraph {{paragraphSize}}" ng-bind="respPara"></p>',
       link(scope) {
-        scope.paragraphSize = 'largePara';
-        scope.width = $window.innerWidth;
-        scope.$watch('width', (newWidth) => {
-          if (newWidth <= 400) {
-            scope.paragraphSize = 'smallPara';
-          } else if (newWidth > 400 && newWidth <= 767) {
-            scope.paragraphSize = 'mediumPara';
-          } else {
-            scope.paragraphSize = 'largePara';
+        scope.$on('breakpointClassChange', (event, argument) => {
+          scope.$apply(() => {
+            scope.paragraphSize = argument.styleClass;
+          });
+        });
+      },
+    };
+  }
+
+  angular
+    .module('fj.app.directives')
+    .directive('breakpoint', _breakpoint);
+  _breakpoint.$inject = ['$rootScope', '$timeout', '$window'];
+  function _breakpoint($rootScope, $timeout, $window) {
+    return {
+      restrict: 'A',
+      link(scope, element, attributes) {
+        const breakpointString = attributes.breakpoint;
+        const customBreakpoints = angular.fromJson(breakpointString);
+        scope.breakpoint = { windowSize: $window.innerWidth, styleClass: '' };
+        scope.broadcastBreakEvent = () => {
+          $rootScope.$broadcast('breakpointClassChange', scope.breakpoint);
+        };
+        scope.$watch('breakpoint.styleClass', (newStyleClass, oldStyleClass) => {
+          if (newStyleClass.length > 0 && newStyleClass !== oldStyleClass) {
+            $timeout(() => { scope.broadcastBreakEvent(); });
           }
+        });
+        scope.$watch('breakpoint.windowSize', (newSize) => {
+          let className = 'small-screen';
+          Object.keys(customBreakpoints).forEach((key) => {
+            const breakSize = parseInt(key, 10);
+            if (breakSize < newSize) {
+              className = customBreakpoints[breakSize];
+            }
+          });
+          scope.breakpoint.styleClass = className;
         });
         angular.element($window).on('resize', () => {
           scope.$apply(() => {
-            scope.width = $window.innerWidth;
+            scope.breakpoint.windowSize = $window.innerWidth;
+          });
+        });
+        jQuery(() => {
+          $timeout(() => {
+            scope.broadcastBreakEvent();
+            console.info('complete broadcast...');
+          }, 1e2);
+        });
+      },
+    };
+  }
+
+  angular
+    .module('fj.app.directives')
+    .directive('responsiveText', _responsiveText);
+  _responsiveText.$inject = ['$log'];
+  function _responsiveText($log) {
+    return {
+      restrict: 'E',
+      replace: true,
+      scope: {
+        respText: '@targettext',
+      },
+      template: '<p class="text {{deviceSize}}" ng-bind="respText"></p>',
+      link(scope) {
+        scope.$on('breakpointClassChange', (event, argument) => {
+          $log.log('responsiveText receiving breakpointClassChange ', argument);
+          scope.$apply(() => {
+            scope.deviceSize = argument.styleClass;
           });
         });
       },
@@ -111,7 +152,7 @@
       },
       template: `
         <div class="item-list-container">
-          <ol>
+          <ol class="{{deviceSize}}">
             <li ng-class="{smallText:isMorePresent}" ng-repeat="item in itemDisplayList" ng-bind="item"></li>
           </ol>
           <button class="show-more" ng-show="isMorePresent" ng-click="showMore(itemDisplayList)"><span>More...</span></button>
@@ -135,6 +176,11 @@
             scope.isMorePresent = false;
             scope.itemDisplayList = scope.itemList;
           }
+        });
+        scope.$on('breakpointClassChange', (event, argument) => {
+          scope.$apply(() => {
+            scope.deviceSize = argument.styleClass;
+          });
         });
         angular.element($window).on('resize', () => {
           scope.$apply(() => {

@@ -1,86 +1,77 @@
-<div class="loader" ng-if="!loaded">
-  <img src="./assets/img/loading.svg" alt="loading...">
-</div>
-<div class="container" ng-if="loaded">
-  <div class="my-profile-container">
-    <div class="row">
-        <div class="pic">
-            <responsive-header targetText="{{personal.name}}">
-            </responsive-header>
-            <responsive-image
-                    imagesrc="{{personal.avatar}}"
-                    imagealt="profile">
-            </responsive-image>
-        </div>
+<div class="my-profile-container">
+  <div class="row">
+    <div class="pic">
+      <responsive-header targetText="{{personal.name}}"></responsive-header>
+      <responsive-image imagesrc="{{personal.avatar}}" imagealt="profile"></responsive-image>
+    </div>    
+  </div>
+  <div class="row">
+    <div class="about">
+      <button class="btn" ng-model="professional"
+              ng-click="getDetail($event)"
+              ng-class="{'selected':selected}"
+              ng-disabled="selected">Professional</button>
+      <button class="btn" ng-model="personal"
+              ng-click="getDetail($event)"
+              ng-disabled="!selected"
+              ng-class="{'selected':!selected}">Personal</button>
     </div>
-    <div class="row">
-        <div class="about">
-            <button class="btn" ng-model="professional"
-                    ng-click="getDetail($event)"
-                    ng-class="{'selected':selected}"
-                    ng-disabled="selected">
-                Professional
-            </button>
-            <button class="btn" ng-model="personal"
-                    ng-click="getDetail($event)"
-                    ng-disabled="!selected"
-                    ng-class="{'selected':!selected}">
-                Personal
-            </button>
+  </div>  
+  <div class="row">
+    <div class="display">
+      <div class="detailProfessional" ng-show="selected">
+        <responsive-paragraph targetPara="{{professional.aboutme}}"></responsive-paragraph>
+        <div class="section">
+          <div class="divider">
+            <responsive-header targetText="Experience"></responsive-header>
+            <responsive-text targetText="{{professional.years}}"></responsive-text>
+            <responsive-header targetText="Job Roles"></responsive-header>
+            <responsive-list targetlist="professional.roles"></responsive-list>
+            <responsive-header targetText="Languages Known"></responsive-header>
+            <responsive-list targetlist="professional.languages"></responsive-list>
+          </div>
+          <div class="divider">
+            <responsive-header targetText="Web Technologies"></responsive-header>
+            <responsive-list targetlist="professional.webdevelopment"></responsive-list>
+            <responsive-header targetText="Tools"></responsive-header>
+            <responsive-list targetlist="professional.tools"></responsive-list>
+          </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="display">
-            <div class="detailProfessional" ng-show="selected">
-                <responsive-paragraph targetPara="{{professional.aboutme}}">
-                </responsive-paragraph>
-                <div class="section">
-                    <div class="divider">
-                        <h4>No of Year Experience</h4>
-                        {{professional.years}}
-                        <h4>Job Roles</h4>
-                        <responsive-list targetlist="professional.roles">
-                        </responsive-list>
-                        <h4>Languages Known</h4>
-                        <responsive-list targetlist="professional.languages">
-                        </responsive-list>
-                    </div>
-                    <div class="divider">
-                        <h4>Web Technologies</h4>
-                        <responsive-list targetlist="professional.webdevelopment">
-                        </responsive-list>
-                        <h4> Tools</h4>
-                        <responsive-list targetlist="professional.tools">
-                        </responsive-list>
-                    </div>
-                </div>
-            </div>
-            <div class="detailPersonal" ng-show="!selected">
-                <div class="section">
-                    <div class="divider">
-                        <h4>Full Name </h4> {{personal.name}}
-                        <h4>Spouse Name </h4> {{personal.spouse}}
-                        <h4>Father Name </h4> {{personal.father}}
-                        <h4>Mother Name </h4> {{personal.mother}}
-                        <h4>Blood Group </h4> {{personal.bloodGroup}}
-                        <h4>Height </h4> {{personal.height}}
-                    </div>
-                    <div class="divider">
-                        <h4>Weight </h4> {{personal.weight}}
-                        <h4>Chest </h4> {{personal.chest}}
-                        <h4>Address </h4> {{personal.address}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-      <div class="footer">
-        <a ng-href="{{professional.social.twitter}}" class="symbol" title="twitter"></a>
-        <a ng-href="{{professional.social.facebook}}" class="symbol" title="facebook"></a>
-        <a ng-href="{{professional.social.linkedin}}" class="symbol" title="linkedin"></a>
-        <a ng-href="{{professional.social.googleplus}}" class="symbol" title="googleplus"></a>
       </div>
+      <div class="detailPersonal" ng-show="!selected">
+        <div class="section">
+          <div class="divider">
+            <responsive-header targetText="Full Name"></responsive-header>
+            <responsive-text targetText="{{personal.name}}"></responsive-text>
+            <responsive-header targetText="Spouse Name"></responsive-header>
+            <responsive-text targetText="{{personal.spouse}}"></responsive-text>
+            <responsive-header targetText="Father Name"></responsive-header>
+            <responsive-text targetText="{{personal.father}}"></responsive-text>
+            <responsive-header targetText="Mother Name"></responsive-header>
+            <responsive-text targetText="{{personal.mother}}"></responsive-text>
+            <responsive-header targetText="Blood Group"></responsive-header>
+            <responsive-text targetText="{{personal.bloodGroup}}"></responsive-text>
+            <responsive-header targetText="Height"></responsive-header>
+            <responsive-text targetText="{{personal.height}}"></responsive-text>
+          </div>
+          <div class="divider">
+            <responsive-header targetText="Weight"></responsive-header>
+            <responsive-text targetText="{{personal.weight}}"></responsive-text>
+            <responsive-header targetText="Chest"></responsive-header>
+            <responsive-text targetText="{{personal.chest}}"></responsive-text>
+            <responsive-header targetText="Address"></responsive-header>
+            <responsive-text targetText="{{personal.address}}"></responsive-text>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="footer">
+      <a ng-href="{{professional.social.twitter}}" class="symbol" title="twitter"></a>
+      <a ng-href="{{professional.social.facebook}}" class="symbol" title="facebook"></a>
+      <a ng-href="{{professional.social.linkedin}}" class="symbol" title="linkedin"></a>
+      <a ng-href="{{professional.social.googleplus}}" class="symbol" title="googleplus"></a>
     </div>
   </div>
 </div>
