@@ -1,26 +1,39 @@
+@import 'font';
 body {
   background: #eee;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 300;
+  padding: 1rem 2rem;
   .my-profile-container {
     background: white;
-    box-shadow: 2px 2px 2px 2px lightgrey;
+    width: 100%;
     margin: auto;
-    width: 1024px;
+    box-shadow: 2px 2px 2px 2px lightgrey;
     .row {
       .pic {
-        height: 300px;
         text-align: center;
-        .name {
-          font-weight: 100;
-          text-align: center;
-          background: #eee;
+        padding: 0 0 20px;
+        .largeDevice{
           color: green;
+          font-size: 4rem;
+          background: #eee;
+          font-weight: 100;
+        }
+        .mediumDevice{
+          color: green;
+          font-size: 2rem;
+          background: #eee;
+          font-weight: 100;
+        }
+        .smallDevice{
+          color: green;
+          font-size: 1rem;
+          background: #eee;
+          font-weight: 300;
         }
         .profile-image {
           border-radius: 100%;
-          margin: 70px 0px 50px;
         }
       }
       .about {
@@ -52,18 +65,53 @@ body {
           .section {
             display: flex;
             .divider {
-              width: 500px;
+              width: 50%;
+              margin-right:10px;
               h4 {
                 font-weight: 300;
                 color: green;
+                margin:0px;
               }
             }
           }
           position: relative;
           .aboutme {
             &:first-letter {
-              font-size: 25px;
-              color: green;
+              color:green;
+            }
+            &.smallPara{
+              font-size: 0.8rem;
+              &:first-letter {
+                font-size: 1.6rem;
+              }
+            }
+            &.mediumPara{
+              font-size: 1.2rem;
+              &:first-letter {
+                font-size: 3rem;
+              }
+            }
+            &.largePara{
+              font-size: 2rem;
+              &:first-letter {
+                font-size: 4rem;
+              }
+            }
+          }
+          .item-list-container{
+            ol{
+              margin-bottom: 2px;
+              font-size:1rem;
+              .smallText{
+                font-size:0.8rem;
+              }
+            }
+            .show-more{
+              background: none;
+              border: none;
+              cursor: pointer;
+              color:blue;
+              margin-left:10px;
             }
           }
         }

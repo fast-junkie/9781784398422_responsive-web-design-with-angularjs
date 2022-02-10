@@ -5,15 +5,11 @@
   "main": "server.js",
   "scripts": {
     "copy:vendor": "cpx \"node_modules/{angular,angular-*,jquery/dist}/**/*\" public/assets/vendor -C",
-    "scss:desktop": "sass public/assets/sass/desktop.scss public/assets/css/desktop.css",
-    "scss:mobile": "sass public/assets/sass/mobile.scss public/assets/css/mobile.css",
-    "scss:tablet": "sass public/assets/sass/tablet.scss public/assets/css/tablet.css",
+    "scss:app": "sass public/assets/sass/app.scss public/assets/css/app.css",
     "start": "DEBUG=angularjs,angularjs:* nodemon server.js",
     "test": "jest --coverage",
-    "build:desktop": "npm run scss:desktop",
-    "build:mobile": "npm run scss:mobile",
-    "build:tablet": "npm run scss:tablet",
-    "build": "npm run copy:vendor && npm run build:desktop && npm run build:mobile && npm run build:tablet"
+    "build:app": "npm run scss:app",
+    "build": "npm run copy:vendor && npm run build:app"
   },
   "author": "Fast Junkie",
   "license": "copyleft-next-0.3.1",
